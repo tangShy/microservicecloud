@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "MICROSERVICECLOUD-DEPT")
+@FeignClient(value = "MICROSERVICECLOUD-DEPT", fallbackFactory = DeptClientServiceFallbackFactory.class)
 public interface DeptClientService {
-    @RequestMapping(value = "/dept/get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/dept/get/{id}", method = RequestMethod.GET)
     Dept get(@PathVariable("id") long id);
 
-    @RequestMapping(value = "/dept/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/dept/list", method = RequestMethod.GET)
     List<Dept> list();
 
-    @RequestMapping(value = "/dept/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/dept/add", method = RequestMethod.POST)
     boolean add(Dept dept);
 
 
